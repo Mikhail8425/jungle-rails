@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
   def new
     @user = User.new
   end
 
   def create
-    user = User.new(user_params)
-    if (user.save)
-      session[:user_id] = user.id
+    @user = User.new(user_params)
+    if (@user.save)
+      session[:user_id] = @user.id
       redirect_to '/products', notice: 'user created'
     else
       render :new
